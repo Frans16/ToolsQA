@@ -50,14 +50,16 @@ public class WebTableAction extends CustomKeywords{
 		customClick(webTable.buttonSubmit);
 	}
 	
-	public void deleteRowByName(String name) {
+	public void deleteRowByName(String name) throws InterruptedException {
         for (WebElement row : webTable.allRow) {
             List<WebElement> cells = row.findElements(By.className("rt-td"));
             String rowName = cells.get(0).getText();  // Assuming the first cell contains the name
             if (rowName.equals(name)) {
                 // Click the delete button for this row
-                WebElement deleteButton = row.findElement(By.cssSelector("span[title='Delete']"));
-                deleteButton.click();
+            	Thread.sleep(2000);
+                WebElement deleteButton = row.findElement(By.xpath("//span[@title='Delete']"));
+                moveToElement(deleteButton);
+                customClick(deleteButton);
                 break;  // Exit the loop after deleting the row
             }
         }

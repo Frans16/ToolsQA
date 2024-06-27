@@ -11,12 +11,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CustomKeywords {
 	private static JavascriptExecutor js;
+	 private static Actions actions;
 	
 	 public static void initializeObjects() {
 	        WebDriver driver = HelperClass.getDriver();
 	        new WebDriverWait(driver, Duration.ofSeconds(10));
 	        js = (JavascriptExecutor) driver;
-	        new Actions(driver);
+	        actions = new Actions(driver);
 	    }
 	    
 	    public void customClick(WebElement element) {
@@ -25,6 +26,10 @@ public class CustomKeywords {
 			} catch (Exception e) {
 				js.executeScript("arguments[0].click()", element);
 			}
+	    }
+	    
+	    public void moveToElement(WebElement element) {
+	    	actions.moveToElement(element);
 	    }
 	    
 	    public boolean isElementPresent(WebElement element) {

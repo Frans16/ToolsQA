@@ -44,7 +44,7 @@ public class Glue {
 	    webTableAction.clickSubmit();
 	}
 	@When("User deletes a newly added user")
-	public void user_deletes_a_newly_added_user() {
+	public void user_deletes_a_newly_added_user() throws InterruptedException {
 	    webTableAction.deleteRowByName(firstname);
 	}
 	@Then("User successfully performs actions on the web table page")
